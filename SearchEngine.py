@@ -99,7 +99,11 @@ def extract_questions_by_id(matching_ids):
 
         cursor.execute(sql_query)
         user_badges = []
-        for row in cursor.fetchall():
+        rows = cursor.fetchall()
+        if not rows:
+            continue
+        
+        for row in rows:
             user_badges.append(row[5])
 
         question = [param for param in row]
