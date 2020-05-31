@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>StackOverflow Clone</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<style>
+    body{
+        margin: 0;
+        padding: 1vh;
+    }
+
+  #box{
+    max-width: 80%;
+    margin: auto;
+    border: 1px solid blue;
+    padding: 1vw;
+  }
+
+  #header{
+    font-size: 3.5vw;
+    font-weight: bold;
+    background: linear-gradient(45deg, #1f1959, #641144, #801515, #804615, #805f15, #807515, #256b12);
+    color: white;
+    margin: auto;
+    text-align: center;
+    max-width: 85%;
+  }
+  form{
+    max-width: 70%;
+    margin: auto;
+    }
+
+   input{
+    min-width: 40%;
+    min-height: 10%;
+    max-width: 100%;
+    max-height: auto;
+   }
+  .div1{
+	  display: grid;
+    grid-template-rows: auto auto auto auto;
+    padding: 1vw;
+    border: 1px solid red;
+    border-radius: 0.2vw;
+   }
+   .params{
+	display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+   }
+</style>
+
+<body>
+
+<p id="header">WELCOME TO MY STACKOVERFLOW CLONE</p>
+
+<form method="POST" action="/send">
+      <br><br>
+      <input id="query" type="text" placeholder="Search for a question" required>
+      <input type="button" value="Search Database" class="f" onclick = "loadResults()">
+</form><br>
+
+<div id="box">
+</div>
+
+
+<script>
+function loadResults(){
+    search_query = document.getElementById("query").value;
+    if (search_query == ""){
+        alert("Please enter search query!");
+        return;
+    }
+
+    alert("Searching Database...\nPlease do not press the search button again!")
+
+    $.post( "/search", {query: search_query},
+    function(err, req, resp){
+    questions = resp["responseJSON"]['questions'];
+    displayResult(questions);
+    });
+
+}
+
+function displayResult(questions){
+    for (var i = 0; i < 10; i += 1){
+        var question = document.createElement("p");
+        question.innerHTML = `Question ${i + 1}: ${questions[i][0]}`;
+        var desc = document.createElement("p");
+        desc.innerHTML = `Description: ${questions[i][0]}`;
+        var votes = document.createElement("p");
+        votes.innerHTML = `Score: ${questions[i][1]}`;
+        var downv = document.createElement("p");
+        downv.innerHTML = `# of Answers: ${questions[i][2]}`;
+        var user = document.createElement("p");
+        user.innerHTML = `Posted By: ${questions[i][3]}`;
+        var rep = document.createElement("p");
+        rep.innerHTML = `Reputation: ${questions[i][4]}`;
+        var badges = document.createElement("p");
+        badges.innerHTML = `Score: ${questions[i][5]}`;
+
+        var element = document.createElement("div");
+        var paramet = document.createElement("div");
+
+        element.className = "div1";
+        paramet.className = "params";
+
+        element.appendChild(question);
+        element.appendChild(desc);
+
+        paramet.appendChild(votes);
+        paramet.appendChild(downv);
+        paramet.appendChild(user);
+        paramet.appendChild(rep);
+
+        element.appendChild(paramet);
+        element.appendChild(badges);
+
+        document.getElementById("box").appendChild(element);
+        }
+}
+
+</script>
+</body>
+</html>
