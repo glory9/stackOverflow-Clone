@@ -98,16 +98,16 @@ def extract_questions_by_id(matching_ids):
             """.format(matching_id)
 
         cursor.execute(sql_query)
-        user_badges = []
         rows = cursor.fetchall()
         if not rows:
             continue
-        
+            
+        user_badges = set()
         for row in rows:
-            user_badges.append(row[5])
+            user_badges.add(row[5])
 
         question = [param for param in row]
-        question[5] = user_badges
+        question[5] = [badge for badge in user_badges]
 
         top_questions.append(question)
 
