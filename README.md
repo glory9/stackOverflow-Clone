@@ -23,5 +23,5 @@ I built a search engine on a 10 GB StackOverflow SQL Database
 * After all matching IDs have been compiled, top 10 IDs with the most matches are then extracted using a max heap (to optimize sorting runtime) and returned
 
 ## Optimizing the search
-* While working on the project, I realized the SQL server response was really slow. So in order to optimize the search time, I limited maximum the number of keywords searched to 6. 
+* While working on the project, I realized the SQL server response was really slow. To optimize the search time, I limited maximum the number of keywords searched to 6. 
 * Also, while parsing the search query string, words with less than 3 characters are filtered out as they will have a lower chance of affecting the search results and can potentially slow down the search request if included.
