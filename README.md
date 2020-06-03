@@ -1,4 +1,4 @@
-# stackOverflow-Clone
+# StackOverflow-Clone
 I built a search engine on a 10 GB StackOverflow SQL Database
 
 # Tools used
