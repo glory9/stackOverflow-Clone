@@ -14,7 +14,7 @@ I built a search engine on a 10 GB StackOverflow SQL Database
 * A copy of StackOverflow's SQL database up to 2010 was used in this project. 
 
 ## Modules
-* `get_top_questions` returns the top matching question based on given key words when called in the `main.py` script.
+* `get_top_questions` returns the top matching questions based on given key words when called in the `main.py` script.
 * The `SearchEngine` Module contains the definition for the `get_top_questions` method as well as other helper functions that make up the logic used in extracting matching questions from the sql database.
 
 ## Searching Logic
