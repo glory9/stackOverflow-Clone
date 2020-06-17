@@ -19,8 +19,8 @@ I built a search engine on a 10 GB StackOverflow SQL Database
 
 ### Searching Logic
 * When a search query string is received from the frontend, it is parsed and the generated key words are passed to the `SearchEngine` Module.
-* The `SearchEngine` module extracts a list of matching question IDs for each keyword. For each key word, a HashMap which maps question IDs to the number of times the question with the corresponding ID contains any of the keywords is updated. 
-* After all matching IDs have been compiled, top 10 IDs with the most matches are then extracted using a max heap (to optimize sorting runtime) and returned
+* The `SearchEngine` module extracts a list of matching question IDs for each keyword. For each key word, a HashMap which keeps track of the number of times that matching question ID's contain keywords is updated. 
+* After all matching IDs have been compiled, top 10 IDs with the most matches are then extracted using a max heap (to optimize sorting runtime) and returned.
 
 ### Optimizing the search
 * While working on the project, I realized the SQL server response was really slow. To optimize the search time, I limited maximum the number of keywords searched to 6. 
